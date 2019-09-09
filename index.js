@@ -1,11 +1,16 @@
+'use strict';
 
-function getDogImage(url) {
-    fetch(url)
-      .then(response => response.json())
-      .then(responseJson => console.log(responseJson.message))
-      .catch(error => alert('Something went wrong. Try again later.'));
-  }
-
+function getDogImage() {
+    let url = "https://dog.ceo/api/breeds/image/random/" + $('#text').val();
+    $.getJSON(url)
+    .then((res) => {
+        let dogArr = res.message
+        for (let i = 0; i < dogArr.length; i++) { 
+            console.log(dogArr[i]);
+        } 
+    })
+    .catch((error) => console.log(error));
+}
 
 function watchForm() {
     $('form').submit(event => {
